@@ -22,4 +22,3 @@ def display_covariance_matrix(covariance_matrix):
 
 def display_portfolio_volatility(portfolio_volatility):
     print(f"Portfolio Volatility: {portfolio_volatility:.2f}%")
-
