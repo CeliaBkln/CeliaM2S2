@@ -2,15 +2,21 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from repository import get_data, get_weight
+
 
 def main():
     # get data -> repository
     portfolio = pd.read_csv(
-        r"input\crisis_portfolio.csv",
+        r"../input/crisis_portfolio.csv",
         delimiter=",",
         index_col="Date",
         parse_dates=["Date"],
     )
+    data = get_data()
+
+    # get_weights => repository
+    weights = get_weight()
 
     # Select portfolio asset prices for the middle of the crisis, 2008-2009
 
@@ -28,9 +34,6 @@ def main():
     # Compute the portfolio's daily returns
     # compute => model
     asset_returns = asset_prices.pct_change()
-
-    # get_weights => repository
-    weights = [0.25, 0.25, 0.25, 0.25]
 
     # compute => model
     portfolio_returns = asset_returns.dot(weights)
