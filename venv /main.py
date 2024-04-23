@@ -1,15 +1,14 @@
 # working directory
 import os
+path = "/Users/bouaklinecelia/PycharmProjects/quantitative_risk_management1/"
+os.chdir(path)
 
 import numpy as np
 
 
 from repository import get_portfolio, get_weights, get_end_date, get_begin_date
-from model import asset_prices_middle, portfolio_returns, annualized_volatility
+from model import asset_prices_middle, portfolio_returns, asset_returns, annualized_volatility
 from view import plot_volatility, plot_asset_prices, plot_portfolio_returns
-
-path = "/Users/bouaklinecelia/PycharmProjects/quantitative_risk_management1/"
-os.chdir(path)
 
 
 def main():
@@ -20,7 +19,6 @@ def main():
 
     # Select portfolio asset prices for the middle of the crisis, 2008-2009
     asset_prices = asset_prices_middle(portfolio, begin_date, end_date)
-    print(asset_prices)
 
     # Plot portfolio's asset prices during this time
     plot_asset_prices(asset_prices)
@@ -32,7 +30,7 @@ def main():
     plot_portfolio_returns(port_returns)
 
     # Generate the covariance matrix from portfolio asset's returns
-    covariance = port_returns.cov()
+    covariance = asset_returns.cov()
 
     # Annualize the covariance using 252 trading days per year
     covariance = covariance * 252
