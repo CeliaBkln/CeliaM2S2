@@ -1,10 +1,15 @@
-import matplotlib.pyplot as plt
+# working directory
+import os
+
 import numpy as np
-import pandas as pd
+
 
 from repository import get_portfolio, get_weights, get_end_date, get_begin_date
 from model import asset_prices_middle, portfolio_returns, annualized_volatility
 from view import plot_volatility, plot_asset_prices, plot_portfolio_returns
+
+path = "/Users/bouaklinecelia/PycharmProjects/quantitative_risk_management1/"
+os.chdir(path)
 
 
 def main():
@@ -15,6 +20,7 @@ def main():
 
     # Select portfolio asset prices for the middle of the crisis, 2008-2009
     asset_prices = asset_prices_middle(portfolio, begin_date, end_date)
+    print(asset_prices)
 
     # Plot portfolio's asset prices during this time
     plot_asset_prices(asset_prices)
@@ -23,29 +29,32 @@ def main():
     port_returns = portfolio_returns(asset_prices, weights)
 
     # Plot portfolio returns
-    plot_portfolio_returns()
+    plot_portfolio_returns(port_returns)
 
     # Generate the covariance matrix from portfolio asset's returns
-    Covariance = port_returns.cov()
+    covariance = port_returns.cov()
 
     # Annualize the covariance using 252 trading days per year
-    Covariance = Covariance * 252
+    covariance = covariance * 252
 
     # Display the covariance matrix => view
-    print(f"Covariance={Covariance}")
+    print(f"covariance={covariance}")
 
-    portfolio_variance = np.transpose(weights) @ Covariance @ weights
+    portfolio_variance = np.transpose(weights) @ covariance @ weights
     portfolio_volatility = np.sqrt(portfolio_variance)
 
     # display => view
     print(f"Portfolio volatility={portfolio_volatility}")
 
     # Compute the annualized volatility series
-    returns_windowed = portfolio_returns.rolling(30)
+    returns_windowed = port_returns.rolling(30)
     volatility_series = annualized_volatility(returns_windowed)
 
     # Plot the portfolio volatility => view
     plot_volatility(volatility_series)
 
+
 if __name__ == "__main__":
+    print(dir())
     main()
+
