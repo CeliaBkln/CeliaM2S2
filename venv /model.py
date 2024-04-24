@@ -12,9 +12,20 @@ def asset_returns(asset_prices):
 
 
 def portfolio_returns(asset_prices, weights):
-    returns = asset_returns(asset_prices)
-    return returns.dot(weights)
+    return asset_prices.pct_change().dot(weights)
 
 
-def annualized_volatility(returns_windowed):
-    return returns_windowed.std() * np.sqrt(252)
+def ann_volatility(port_returns):
+    returns_windowed = port_returns.rolling(30)
+    annualized_volatility = returns_windowed.std() * np.sqrt(252)
+    return annualized_volatility
+
+
+def ann_cov(asset_ret):
+    return asset_ret.cov() * 252
+
+
+def port_variance(covariance, weights):
+    portfolio_variance = np.transpose(weights) @ covariance @ weights
+    portfolio_volatility = np.sqrt(portfolio_variance)
+    return portfolio_volatility
