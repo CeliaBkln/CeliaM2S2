@@ -1,0 +1,27 @@
+[initialisation]
+field_to_keep = "Adj Close"
+begin_date = "2008-01-01"
+end_date = "2009-12-31"
+portfolio_column = "Portfolio"
+
+[portfolio]
+Citibank = 0.25
+Morgan_Stanley = 0.25
+Goldman_Sachs = 0.25
+J_P_Morgan = 0.25
+
+[view_mode]
+print = true
+pandasgui = false
+chart = true
+
+[view]
+closing = "Prix de clôture"
+returns = "Rendements du portefeuille"
+volatility = "Volatilité annualisée"
+covariance = "Matrice de covariance"
+
+[chart]
+color = "black"
+label = "Portfolio"
+column = "Portfolio"

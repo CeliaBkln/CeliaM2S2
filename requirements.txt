@@ -2,4 +2,5 @@ matplotlib~=3.7.5
 pandas~=2.0.3
 pandasgui~=0.2.14
 numpy~=1.24.4
-seaborn
+seaborn~=0.13.2
+tomli~=2.0.1

@@ -1,10 +1,4 @@
-# working directory
-import os
-
-path = "/Users/bouaklinecelia/PycharmProjects/quantitative_risk_management1/"
-os.chdir(path)
-
-from repository import get_portfolio, get_weights, get_end_date, get_begin_date
+from repository import get_data, get_weights, get_config
 from model import (
     asset_prices_middle,
     portfolio_returns,
@@ -16,14 +10,25 @@ from model import (
 from view import plot_volatility, plot_asset_prices, plot_portfolio_returns, cov_matrix
 
 
+# working directory
+import os
+
+path = "/Users/bouaklinecelia/PycharmProjects/quantitative_risk_management1/"
+os.chdir(path)
+
+
 def main():
-    portfolio = get_portfolio()
-    begin_date = get_begin_date()
-    end_date = get_end_date()
-    weights = get_weights()
+    config = get_config()
+    data = get_data()
+    weights = get_weights(config)
 
     # Select portfolio asset prices for the middle of the crisis, 2008-2009
-    asset_prices = asset_prices_middle(portfolio, begin_date, end_date)
+    asset_prices = asset_prices_middle(
+        data,
+        config["initialisation"]["begin_date"],
+        config["initialisation"]["end_date"],
+    )
+    print (asset_prices)
     asset_ret = asset_returns(asset_prices)
 
     # Plot portfolio's asset prices during this time
