@@ -28,7 +28,6 @@ def main():
         config["initialisation"]["begin_date"],
         config["initialisation"]["end_date"],
     )
-    print (asset_prices)
     asset_ret = asset_returns(asset_prices)
 
     # Plot portfolio's asset prices during this time
@@ -44,9 +43,6 @@ def main():
     covariance = ann_cov(asset_ret)
     cov_matrix(covariance)
 
-    # Display the covariance matrix => view
-    print(f"covariance={covariance}")
-
     # Calculate portfolio volatility
     portfolio_volatility = port_variance(covariance, weights)
 
@@ -58,8 +54,6 @@ def main():
 
     # Plot the portfolio volatility => view
     plot_volatility(annualized_volatility)
-
-    # Display results
 
 
 if __name__ == "__main__":

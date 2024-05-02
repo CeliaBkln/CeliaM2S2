@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 def asset_prices_middle(portfolio, begin_date, end_date):
@@ -26,10 +27,10 @@ def portfolio_returns(asset_prices, weights):
     Calculate expected portfolio performance
     The sum of the weights must be 1
     :param weights: weights as a vector -> np.array([0.25, 0.25, 0.25, 0.25])
-    :param data_portfolio: asset prices
+    :param asset_prices: DataFrame containing asset prices with dates as index
     :return: the portfolio return
     """
-    return asset_prices.pct_change().dot(weights)
+    return pd.DataFrame(asset_prices.pct_change().dot(weights))
 
 
 def ann_volatility(port_returns):

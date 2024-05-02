@@ -8,6 +8,6 @@ setup(
     author="celia_bouakline",
     author_email="bouaklinecelia@gmail.com",
     description="projet S2 M2 Python",
-    install_requires=["matplotlib", "numpy", "pandas","seaborn"],
+    install_requires=["matplotlib", "numpy", "pandas", "seaborn"],
     include_package_data=True,
 )

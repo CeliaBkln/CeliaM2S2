@@ -2,7 +2,6 @@
 field_to_keep = "Adj Close"
 begin_date = "2008-01-01"
 end_date = "2009-12-31"
-portfolio_column = "Portfolio"
 
 [portfolio]
 Citibank = 0.25
@@ -12,7 +11,6 @@ J_P_Morgan = 0.25
 
 [view_mode]
 print = true
-pandasgui = false
 chart = true
 
 [view]
@@ -23,5 +21,3 @@ covariance = "Matrice de covariance"
 
 [chart]
 color = "black"
-label = "Portfolio"
-column = "Portfolio"
